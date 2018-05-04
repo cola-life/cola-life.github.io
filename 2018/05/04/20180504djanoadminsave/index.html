@@ -15,7 +15,8 @@
 <meta property="og:description" content="使用Django框架中的admin可以非常方便地实现常用的管理功能，但有时在通过Admin添加数据时，希望在数据保存时进行一些额外的操作，这可以通过重写ModelAdmin的save_model实现。lang: python1234567from django.contrib import adminclass ArticleAdmin(admin.ModelAdmin):    def save">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2018/05/04/20180504djanoadminsave/2018/05/04/20180504djanoadminsave/Hydrangeas.jpg">
-<meta property="og:updated_time" content="2018-05-04T13:53:19.685Z">
+<meta property="og:image" content="http://yoursite.com/2018/05/04/20180504djanoadminsave/Hydrangeas.jpg">
+<meta property="og:updated_time" content="2018-05-04T13:59:32.038Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django admin 数据保存时自定义操作">
 <meta name="twitter:description" content="使用Django框架中的admin可以非常方便地实现常用的管理功能，但有时在通过Admin添加数据时，希望在数据保存时进行一些额外的操作，这可以通过重写ModelAdmin的save_model实现。lang: python1234567from django.contrib import adminclass ArticleAdmin(admin.ModelAdmin):    def save">
@@ -89,12 +90,12 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>使用Django框架中的admin可以非常方便地实现常用的管理功能，但有时在通过Admin添加数据时，希望在数据保存时进行一些额外的操作，这可以通过重写ModelAdmin的save_model实现。<br><figure class="highlight plain"><figcaption><span>lang: python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">from django.contrib import admin</span><br><span class="line">class ArticleAdmin(admin.ModelAdmin):</span><br><span class="line">    def save_model(self, request, obj, form, change):</span><br><span class="line">        # 自定义操作</span><br><span class="line">        obj.save()</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
-<p>通过使用ModelAdmin中的其它方法，可以对admin的其它功能进行更多的控制。<br>详见 <a href="https://docs.djangoproject.com/en/dev/ref/contrib/admin/#django.contrib.admin.ModelAdmin.save_model" title="[https://docs.djangoproject.com/en/dev/ref/contrib/admin/#django.contrib.admin.ModelAdmin.save_model]" target="_blank" rel="noopener">Django文档</a><br><img src="/2018/05/04/20180504djanoadminsave/2018/05/04/20180504djanoadminsave/Hydrangeas.jpg" title="This is an example image"></p>
+<p>通过使用ModelAdmin中的其它方法，可以对admin的其它功能进行更多的控制。<br>详见 <a href="https://docs.djangoproject.com/en/dev/ref/contrib/admin/#django.contrib.admin.ModelAdmin.save_model" title="[https://docs.djangoproject.com/en/dev/ref/contrib/admin/#django.contrib.admin.ModelAdmin.save_model]" target="_blank" rel="noopener">Django文档</a><br><img src="/2018/05/04/20180504djanoadminsave/2018/05/04/20180504djanoadminsave/Hydrangeas.jpg" title="This is an example image"><br><img src="/2018/05/04/20180504djanoadminsave/Hydrangeas.jpg" alt=""></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/05/04/20180504djanoadminsave/" data-id="cjgs0s89m0001s8kq57tyvfye" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/05/04/20180504djanoadminsave/" data-id="cjgs106tt00009kkqfhfm2lus" class="article-share-link">Share</a>
       
       
     </footer>
