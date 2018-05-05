@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="User model  Fields  class models.User User objects have the following fields:  usernameRequired. 150 characters or fewer. Usernames may contain alphanumeric, _, @, +, . and - characters.The max_length">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-05T02:25:38.936Z">
+<meta property="og:updated_time" content="2018-05-05T02:31:38.857Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django AdminModel user 对象">
 <meta name="twitter:description" content="User model  Fields  class models.User User objects have the following fields:  usernameRequired. 150 characters or fewer. Usernames may contain alphanumeric, _, @, +, . and - characters.The max_length">
@@ -93,11 +93,15 @@
 <p> class models.User<br> User objects have the following fields:</p>
 <ul>
 <li>username<br>Required. 150 characters or fewer. Usernames may contain alphanumeric, _, @, +, . and - characters.<br>The max_length should be sufficient for many use cases. If you need a longer length, please use a custom user model. If you use MySQL with the utf8mb4 encoding (recommended for proper Unicode support), specify at most max_length=191 because MySQL can only create unique indexes with 191 characters in that case by default.<blockquote>
-<p>Usernames and Unicode<br>  Django originally accepted only ASCII letters and numbers in usernames. Although it wasn’t a deliberate choice, Unicode characters have always been accepted when using Python 3. Django 1.10 officially added Unicode support in usernames, keeping the ASCII-only behavior on Python 2, with the option to customize the behavior using User.username_validator.<br>  Changed in Django 1.10:<br>  The max_length increased from 30 to 150 characters.</p>
+<p>Usernames and Unicode<br>Django originally accepted only ASCII letters and numbers in usernames. Although it wasn’t a deliberate choice, Unicode characters have always been accepted when using Python 3. Django 1.10 officially added Unicode support in usernames, keeping the ASCII-only behavior on Python 2, with the option to customize the behavior using User.username_validator.<br>Changed in Django 1.10:<br>The max_length increased from 30 to 150 characters.</p>
 </blockquote>
 </li>
-<li><p>first_name<br>  Optional (blank=True). 30 characters or fewer.</p>
+</ul>
 </li>
+</ol>
+<ul>
+<li><p>first_name<br>Optional (blank=True). 30 characters or fewer.</p>
+<ul>
 <li><p>last_name<br>  Optional (blank=True). 30 characters or fewer.</p>
 </li>
 <li><p>email<br>  Optional (blank=True). Email address.</p>
@@ -123,56 +127,74 @@
 </li>
 </ul>
 </li>
+</ul>
+<ol start="2">
 <li><p>Attributes</p>
 <p> class models.User</p>
-</li>
-</ol>
 <ul>
-<li><p>is_authenticated</p>
-<pre><code>Read-only attribute which is always True (as opposed to AnonymousUser.is_authenticated which is always False). This is a way to tell if the user has been authenticated. This does not imply any permissions and doesn’t check if the user is active or has a valid session. Even though normally you will check this attribute on request.user to find out whether it has been populated by the AuthenticationMiddleware (representing the currently logged-in user), you should know this attribute is True for any User instance.
-</code></pre><blockquote>
+<li>is_authenticated<br>  Read-only attribute which is always True (as opposed to AnonymousUser.is_authenticated which is always False). This is a way to tell if the user has been authenticated. This does not imply any permissions and doesn’t check if the user is active or has a valid session. Even though normally you will check this attribute on request.user to find out whether it has been populated by the AuthenticationMiddleware (representing the currently logged-in user), you should know this attribute is True for any User instance.<blockquote>
 <p>Changed in Django 1.10:<br>In older versions, this was a method. Backwards-compatibility support for using it as a method will be removed in Django 2.0.<br>Don’t use the is operator for comparisons!<br>To allow the is_authenticated and is_anonymous attributes to also work as methods, the attributes are CallableBool objects. Thus, until the deprecation period ends in Django 2.0, you can’t compare these properties using the is operator. That is, request.user.is_authenticated is True always evaluate to False.</p>
-<ul>
-<li>is_anonymous<br>Read-only attribute which is always False. This is a way of differentiating User and AnonymousUser objects. Generally, you should prefer using is_authenticated to this attribute.</li>
-</ul>
 </blockquote>
+</li>
+<li><p>is_anonymous<br>Read-only attribute which is always False. This is a way of differentiating User and AnonymousUser objects. Generally, you should prefer using is_authenticated to this attribute.</p>
 <blockquote>
 <p>Changed in Django 1.10:<br>In older versions, this was a method. Backwards-compatibility support for using it as a method will be removed in Django 2.0.</p>
 </blockquote>
 </li>
-<li><p>username_validator<br>  New in Django 1.10.<br>  Points to a validator instance used to validate usernames. Defaults to validators.UnicodeUsernameValidator on Python 3 and validators.ASCIIUsernameValidator on Python 2.<br>  To change the default username validator, you can subclass the User model and set this attribute to a different validator instance. For example, to use ASCII usernames on Python 3:<br>  <pre><code><br>  from django.contrib.auth.models import User<br>  from django.contrib.auth.validators import ASCIIUsernameValidator</code></pre></p>
-<p>  class CustomUser(User):</p>
-<pre><code>username_validator = ASCIIUsernameValidator()
+<li>username_validator<br>New in Django 1.10.<br>Points to a validator instance used to validate usernames. Defaults to validators.UnicodeUsernameValidator on Python 3 and validators.ASCIIUsernameValidator on Python 2.<br>To change the default username validator, you can subclass the User model and set this attribute to a different validator instance. For example, to use ASCII usernames on Python 3:</li>
+</ul>
+</li>
+</ol>
+<pre><code>
+    from django.contrib.auth.models import User
+    from django.contrib.auth.validators import ASCIIUsernameValidator
 
-class Meta:
-    proxy = True  # If no new field is added.
-</code></pre><p>  <br>Methods</p>
+    class CustomUser(User):
+        username_validator = ASCIIUsernameValidator()
+
+        class Meta:
+            proxy = True  # If no new field is added.
+</code></pre>
+
+<ol start="3">
+<li><p>Methods</p>
+<p> class models.User</p>
+<ul>
+<li><p>get_username()<br>  Returns the username for the user. Since the User model can be swapped out, you should use this method instead of referencing the username attribute directly.</p>
+</li>
+<li><p>get_full_name()<br>  Returns the first_name plus the last_name, with a space in between.</p>
+</li>
+<li><p>get_short_name()<br>  Returns the first_name.</p>
+</li>
+<li><p>set_password(raw_password)<br>  Sets the user’s password to the given raw string, taking care of the password hashing. Doesn’t save the User object.<br>  When the raw_password is None, the password will be set to an unusable password, as if set_unusable_password() were used.</p>
+</li>
+<li><p>check_password(raw_password)<br>  Returns True if the given raw string is the correct password for the user. (This takes care of the password hashing in making the comparison.)</p>
+</li>
+<li><p>set_unusable_password()<br>  Marks the user as having no password set. This isn’t the same as having a blank string for a password. check_password() for this user will never return True. Doesn’t save the User object.<br>  You may need this if authentication for your application takes place against an existing external source such as an LDAP directory.</p>
+</li>
+<li><p>has_usable_password()<br>  Returns False if set_unusable_password() has been called for this user.</p>
+</li>
+<li><p>get_group_permissions(obj=None)<br>  Returns a set of permission strings that the user has, through their groups.<br>  If obj is passed in, only returns the group permissions for this specific object.</p>
+</li>
+<li><p>get_all_permissions(obj=None)<br>  Returns a set of permission strings that the user has, both through group and user permissions.</p>
+<p>  If obj is passed in, only returns the permissions for this specific object.</p>
+</li>
+<li><p>has_perm(perm, obj=None)<br>  Returns True if the user has the specified permission, where perm is in the format “<app label="">.<permission codename="">“. (see documentation on permissions). If the user is inactive, this method will always return False.<br>  If obj is passed in, this method won’t check for a permission for the model, but for this specific object.</permission></app></p>
+</li>
+<li><p>has_perms(perm_list, obj=None)<br>  Returns True if the user has each of the specified permissions, where each perm is in the format “<app label="">.<permission codename="">“. If the user is inactive, this method will always return False.<br>  If obj is passed in, this method won’t check for permissions for the model, but for the specific object.</permission></app></p>
+</li>
+<li><p>has_module_perms(package_name)<br>  Returns True if the user has any permissions in the given package (the Django app label). If the user is inactive, this method will always return False.</p>
+</li>
+<li><p>email_user(subject, message, from_email=None, <strong>kwargs)<br>  Sends an email to the user. If from_email is None, Django uses the DEFAULT_FROM_EMAIL. Any </strong>kwargs are passed to the underlying send_mail() call.</p>
 </li>
 </ul>
-<p>class models.User<br>get_username()<br>Returns the username for the user. Since the User model can be swapped out, you should use this method instead of referencing the username attribute directly.</p>
-<p>get_full_name()<br>Returns the first_name plus the last_name, with a space in between.</p>
-<p>get_short_name()<br>Returns the first_name.</p>
-<p>set_password(raw_password)<br>Sets the user’s password to the given raw string, taking care of the password hashing. Doesn’t save the User object.</p>
-<p>When the raw_password is None, the password will be set to an unusable password, as if set_unusable_password() were used.</p>
-<p>check_password(raw_password)<br>Returns True if the given raw string is the correct password for the user. (This takes care of the password hashing in making the comparison.)</p>
-<p>set_unusable_password()<br>Marks the user as having no password set. This isn’t the same as having a blank string for a password. check_password() for this user will never return True. Doesn’t save the User object.</p>
-<p>You may need this if authentication for your application takes place against an existing external source such as an LDAP directory.</p>
-<p>has_usable_password()<br>Returns False if set_unusable_password() has been called for this user.</p>
-<p>get_group_permissions(obj=None)<br>Returns a set of permission strings that the user has, through their groups.</p>
-<p>If obj is passed in, only returns the group permissions for this specific object.</p>
-<p>get_all_permissions(obj=None)<br>Returns a set of permission strings that the user has, both through group and user permissions.</p>
-<p>If obj is passed in, only returns the permissions for this specific object.</p>
-<p>has_perm(perm, obj=None)<br>Returns True if the user has the specified permission, where perm is in the format “<app label="">.<permission codename="">“. (see documentation on permissions). If the user is inactive, this method will always return False.</permission></app></p>
-<p>If obj is passed in, this method won’t check for a permission for the model, but for this specific object.</p>
-<p>has_perms(perm_list, obj=None)<br>Returns True if the user has each of the specified permissions, where each perm is in the format “<app label="">.<permission codename="">“. If the user is inactive, this method will always return False.</permission></app></p>
-<p>If obj is passed in, this method won’t check for permissions for the model, but for the specific object.</p>
-<p>has_module_perms(package_name)<br>Returns True if the user has any permissions in the given package (the Django app label). If the user is inactive, this method will always return False.</p>
-<p>email_user(subject, message, from_email=None, <strong>kwargs)<br>Sends an email to the user. If from_email is None, Django uses the DEFAULT_FROM_EMAIL. Any </strong>kwargs are passed to the underlying send_mail() call.</p>
+</li>
+</ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://cola-life.github.io/2018/05/05/djangoadminmodeluser/" data-id="cjgsrnq8p000234kqr524d2rs" class="article-share-link">Share</a>
+      <a data-url="http://cola-life.github.io/2018/05/05/djangoadminmodeluser/" data-id="cjgsrvea00001c0kqrvpncgs5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Django/">Django</a></li></ul>
