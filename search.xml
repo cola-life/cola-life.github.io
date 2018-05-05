@@ -3,24 +3,6 @@
   
     
     <entry>
-      <title>g</title>
-      <link href="/2018/05/05/g-1/"/>
-      <url>/2018/05/05/g-1/</url>
-      <content type="html"><![CDATA[]]></content>
-      
-      
-    </entry>
-    
-    <entry>
-      <title>g</title>
-      <link href="/2018/05/05/g/"/>
-      <url>/2018/05/05/g/</url>
-      <content type="html"><![CDATA[]]></content>
-      
-      
-    </entry>
-    
-    <entry>
       <title>Django如何给上传的图片(或)重命名</title>
       <link href="/2018/05/05/djangorenameupfile/"/>
       <url>/2018/05/05/djangorenameupfile/</url>

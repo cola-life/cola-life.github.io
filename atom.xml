@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cola-life.github.io/"/>
-  <updated>2018-05-05T13:57:54.125Z</updated>
+  <updated>2018-05-05T13:32:00.343Z</updated>
   <id>http://cola-life.github.io/</id>
   
   <author>
@@ -15,34 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>g</title>
-    <link href="http://cola-life.github.io/2018/05/05/g-1/"/>
-    <id>http://cola-life.github.io/2018/05/05/g-1/</id>
-    <published>2018-05-05T13:57:54.000Z</published>
-    <updated>2018-05-05T13:57:54.125Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>g</title>
-    <link href="http://cola-life.github.io/2018/05/05/g/"/>
-    <id>http://cola-life.github.io/2018/05/05/g/</id>
-    <published>2018-05-05T13:32:12.000Z</published>
-    <updated>2018-05-05T13:32:12.398Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
   
   <entry>
     <title>Django如何给上传的图片(或)重命名</title>
