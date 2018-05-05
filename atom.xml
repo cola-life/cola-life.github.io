@@ -41,20 +41,23 @@
     <link href="http://cola-life.github.io/2018/05/05/pythonstring/"/>
     <id>http://cola-life.github.io/2018/05/05/pythonstring/</id>
     <published>2018-05-05T01:57:47.000Z</published>
-    <updated>2018-05-05T02:13:36.023Z</updated>
+    <updated>2018-05-05T05:03:24.717Z</updated>
     
-    <content type="html"><![CDATA[<ol><li><p>strip  lstrip rstrip<br> 字符串里有三个去空格的函数<br> strip 同时去掉左右两边的空格<br> lstrip 去掉左边的空格<br> rstrip 去掉右边的空格</p> <pre><code> >>>a=" gho stwwl " >>>a.lstrip() 'gho stwwl ' >>>a.rstrip() ' gho stwwl' >>>a.strip() 'gho stwwl' </code></pre></li></ol>]]></content>
+    <content type="html"><![CDATA[<ol><li>strip  lstrip rstrip<br> 字符串里有三个去空格的函数<br> strip 同时去掉左右两边的空格<br> lstrip 去掉左边的空格<br> rstrip 去掉右边的空格</li></ol><pre><code>&gt;&gt;&gt;a=&quot; gho stwwl &quot;&gt;&gt;&gt;a.lstrip()    &apos;gho stwwl &apos;&gt;&gt;&gt;a.rstrip()    &apos; gho stwwl&apos;&gt;&gt;&gt;a.strip()    &apos;gho stwwl&apos;</code></pre><a id="more"></a>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;ol&gt;
-&lt;li&gt;&lt;p&gt;strip  lstrip rstrip&lt;br&gt; 字符串里有三个去空格的函数&lt;br&gt; strip 同时去掉左右两边的空格&lt;br&gt; lstrip 去掉左边的空格&lt;br&gt; rstrip 去掉右边的空格&lt;/p&gt;
- &lt;pre&gt;&lt;code&gt;
-
- &gt;&gt;&gt;a=&quot; gho
-      
+      &lt;ol&gt;
+&lt;li&gt;strip  lstrip rstrip&lt;br&gt; 字符串里有三个去空格的函数&lt;br&gt; strip 同时去掉左右两边的空格&lt;br&gt; lstrip 去掉左边的空格&lt;br&gt; rstrip 去掉右边的空格&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt;a=&amp;quot; gho stwwl &amp;quot;
+&amp;gt;&amp;gt;&amp;gt;a.lstrip()
+    &amp;apos;gho stwwl &amp;apos;
+&amp;gt;&amp;gt;&amp;gt;a.rstrip()
+    &amp;apos; gho stwwl&amp;apos;
+&amp;gt;&amp;gt;&amp;gt;a.strip()
+    &amp;apos;gho stwwl&amp;apos;
+&lt;/code&gt;&lt;/pre&gt;
     
     </summary>
     
