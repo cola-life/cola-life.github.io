@@ -41,7 +41,7 @@
     <link href="http://cola-life.github.io/2018/05/05/pythonstring/"/>
     <id>http://cola-life.github.io/2018/05/05/pythonstring/</id>
     <published>2018-05-05T01:57:47.000Z</published>
-    <updated>2018-05-05T05:05:40.271Z</updated>
+    <updated>2018-05-05T05:06:59.171Z</updated>
     
     <content type="html"><![CDATA[<ol><li>strip  lstrip rstrip<br> 字符串里有三个去空格的函数<br> strip 同时去掉左右两边的空格<br> lstrip 去掉左边的空格<br> rstrip 去掉右边的空格</li></ol><pre><code>&gt;&gt;&gt;a=&quot; gho stwwl &quot;&gt;&gt;&gt;a.lstrip()    &apos;gho stwwl &apos;&gt;&gt;&gt;a.rstrip()    &apos; gho stwwl&apos;&gt;&gt;&gt;a.strip()    &apos;gho stwwl&apos;</code></pre><a id="more"></a>]]></content>
     
