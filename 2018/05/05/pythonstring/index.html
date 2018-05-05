@@ -7,18 +7,18 @@
   
   <title>python string 处理 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="###1.strip  lstrip rstrip字符串里有三个去空格的函数strip 同时去掉左右两边的空格lstrip 去掉左边的空格rstrip 去掉右边的空格lang: python123456789&amp;gt;&amp;gt;&amp;gt;a=&amp;quot; gho stwwl &amp;quot;&amp;gt;&amp;gt;&amp;gt;a.lstrip()&amp;apos;gho stwwl &amp;apos;&amp;gt;&amp;gt;&amp;gt;a.r">
+  <meta name="description" content="strip  lstrip rstrip 字符串里有三个去空格的函数 strip 同时去掉左右两边的空格 lstrip 去掉左边的空格 rstrip 去掉右边的空格     &amp;gt;&amp;gt;&amp;gt;a=&quot; gho stwwl &quot;  &amp;gt;&amp;gt;&amp;gt;a.lstrip()  &apos;gho stwwl &apos;  &amp;gt;&amp;gt;&amp;gt;a.rstrip()  &apos; gho stwwl&apos;  &amp;gt;&amp;gt;&amp;gt;a.strip()  &apos;gho stwwl&apos;">
 <meta name="keywords" content="Python string">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python string 处理">
 <meta property="og:url" content="http://cola-life.github.io/2018/05/05/pythonstring/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="###1.strip  lstrip rstrip字符串里有三个去空格的函数strip 同时去掉左右两边的空格lstrip 去掉左边的空格rstrip 去掉右边的空格lang: python123456789&amp;gt;&amp;gt;&amp;gt;a=&amp;quot; gho stwwl &amp;quot;&amp;gt;&amp;gt;&amp;gt;a.lstrip()&amp;apos;gho stwwl &amp;apos;&amp;gt;&amp;gt;&amp;gt;a.r">
+<meta property="og:description" content="strip  lstrip rstrip 字符串里有三个去空格的函数 strip 同时去掉左右两边的空格 lstrip 去掉左边的空格 rstrip 去掉右边的空格     &amp;gt;&amp;gt;&amp;gt;a=&quot; gho stwwl &quot;  &amp;gt;&amp;gt;&amp;gt;a.lstrip()  &apos;gho stwwl &apos;  &amp;gt;&amp;gt;&amp;gt;a.rstrip()  &apos; gho stwwl&apos;  &amp;gt;&amp;gt;&amp;gt;a.strip()  &apos;gho stwwl&apos;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-05T02:06:01.142Z">
+<meta property="og:updated_time" content="2018-05-05T02:13:36.023Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python string 处理">
-<meta name="twitter:description" content="###1.strip  lstrip rstrip字符串里有三个去空格的函数strip 同时去掉左右两边的空格lstrip 去掉左边的空格rstrip 去掉右边的空格lang: python123456789&amp;gt;&amp;gt;&amp;gt;a=&amp;quot; gho stwwl &amp;quot;&amp;gt;&amp;gt;&amp;gt;a.lstrip()&amp;apos;gho stwwl &amp;apos;&amp;gt;&amp;gt;&amp;gt;a.r">
+<meta name="twitter:description" content="strip  lstrip rstrip 字符串里有三个去空格的函数 strip 同时去掉左右两边的空格 lstrip 去掉左边的空格 rstrip 去掉右边的空格     &amp;gt;&amp;gt;&amp;gt;a=&quot; gho stwwl &quot;  &amp;gt;&amp;gt;&amp;gt;a.lstrip()  &apos;gho stwwl &apos;  &amp;gt;&amp;gt;&amp;gt;a.rstrip()  &apos; gho stwwl&apos;  &amp;gt;&amp;gt;&amp;gt;a.strip()  &apos;gho stwwl&apos;">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -87,12 +87,26 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>###1.strip  lstrip rstrip<br>字符串里有三个去空格的函数<br>strip 同时去掉左右两边的空格<br>lstrip 去掉左边的空格<br>rstrip 去掉右边的空格<br><figure class="highlight plain"><figcaption><span>lang: python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt;&gt;&gt;a=&quot; gho stwwl &quot;</span><br><span class="line">&gt;&gt;&gt;a.lstrip()</span><br><span class="line">&apos;gho stwwl &apos;</span><br><span class="line">&gt;&gt;&gt;a.rstrip()</span><br><span class="line">&apos; gho stwwl&apos;</span><br><span class="line">&gt;&gt;&gt;a.strip()</span><br><span class="line">&apos;gho stwwl&apos;</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+        <ol>
+<li><p>strip  lstrip rstrip<br> 字符串里有三个去空格的函数<br> strip 同时去掉左右两边的空格<br> lstrip 去掉左边的空格<br> rstrip 去掉右边的空格</p>
+ <pre><code>
+
+ >>>a=" gho stwwl "
+ >>>a.lstrip()
+ 'gho stwwl '
+ >>>a.rstrip()
+ ' gho stwwl'
+ >>>a.strip()
+ 'gho stwwl'
+
+ </code></pre>
+</li>
+</ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://cola-life.github.io/2018/05/05/pythonstring/" data-id="cjgsr0a6c0002x0kq4o16jbux" class="article-share-link">Share</a>
+      <a data-url="http://cola-life.github.io/2018/05/05/pythonstring/" data-id="cjgsrg64e00029ckqp8a5j176" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python-string/">Python string</a></li></ul>
