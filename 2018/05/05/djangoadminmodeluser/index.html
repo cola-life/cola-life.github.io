@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="User model  Fields  class models.User User objects have the following fields:  username   Required. 150 characters or fewer. Usernames may contain alphanumeric, _, @, +, . and - characters.  The max_l">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-05T02:50:45.975Z">
+<meta property="og:updated_time" content="2018-05-05T05:59:24.760Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django AdminModel user 对象">
 <meta name="twitter:description" content="User model  Fields  class models.User User objects have the following fields:  username   Required. 150 characters or fewer. Usernames may contain alphanumeric, _, @, +, . and - characters.  The max_l">
@@ -275,6 +275,10 @@
       
       <div class="article-info article-info-post">
         
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/编程/">编程</a>
+    </div>
+
 
         
     <div class="article-tag tagcloud">
@@ -295,6 +299,7 @@
 <ul>
 <li><p>username</p>
 <p>  Required. 150 characters or fewer. Usernames may contain alphanumeric, _, @, +, . and - characters.<br>  The max_length should be sufficient for many use cases. If you need a longer length, please use a custom user model. If you use MySQL with the utf8mb4 encoding (recommended for proper Unicode support), specify at most max_length=191 because MySQL can only create unique indexes with 191 characters in that case by default.</p>
+  <a id="more"></a>
 <blockquote>
 <p>Usernames and Unicode<br>  Django originally accepted only ASCII letters and numbers in usernames. Although it wasn’t a deliberate choice, Unicode characters have always been accepted when using Python 3. Django 1.10 officially added Unicode support in usernames, keeping the ASCII-only behavior on Python 2, with the option to customize the behavior using User.username_validator.<br>  Changed in Django 1.10:<br>  The max_length increased from 30 to 150 characters.</p>
 </blockquote>
