@@ -103,7 +103,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://cola-life.github.io/2018/05/05/pythonstring/" data-id="cjgsrg64e00029ckqp8a5j176" class="article-share-link">Share</a>
+      <a data-url="http://cola-life.github.io/2018/05/05/pythonstring/" data-id="cjgsrnq8r000334kq9hqhsnif" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python-string/">Python string</a></li></ul>
@@ -143,7 +143,7 @@
 <p> class models.User<br> User objects have the following fields:</p>
 <ul>
 <li>username<br>Required. 150 characters or fewer. Usernames may contain alphanumeric, _, @, +, . and - characters.<br>The max_length should be sufficient for many use cases. If you need a longer length, please use a custom user model. If you use MySQL with the utf8mb4 encoding (recommended for proper Unicode support), specify at most max_length=191 because MySQL can only create unique indexes with 191 characters in that case by default.<blockquote>
-<p>Usernames and Unicode<br>Django originally accepted only ASCII letters and numbers in usernames. Although it wasn’t a deliberate choice, Unicode characters have always been accepted when using Python 3. Django 1.10 officially added Unicode support in usernames, keeping the ASCII-only behavior on Python 2, with the option to customize the behavior using User.username_validator.<br>Changed in Django 1.10:<br>The max_length increased from 30 to 150 characters.</p>
+<p>Usernames and Unicode<br>  Django originally accepted only ASCII letters and numbers in usernames. Although it wasn’t a deliberate choice, Unicode characters have always been accepted when using Python 3. Django 1.10 officially added Unicode support in usernames, keeping the ASCII-only behavior on Python 2, with the option to customize the behavior using User.username_validator.<br>  Changed in Django 1.10:<br>  The max_length increased from 30 to 150 characters.</p>
 </blockquote>
 </li>
 <li><p>first_name<br>  Optional (blank=True). 30 characters or fewer.</p>
@@ -174,35 +174,31 @@
 </ul>
 </li>
 <li><p>Attributes</p>
+<p> class models.User</p>
 </li>
 </ol>
-<p>class models.User</p>
-<pre><code>* is_authenticated
-    Read-only attribute which is always True (as opposed to AnonymousUser.is_authenticated which is always False). This is a way to tell if the user has been authenticated. This does not imply any permissions and doesn’t check if the user is active or has a valid session. Even though normally you will check this attribute on request.user to find out whether it has been populated by the AuthenticationMiddleware (representing the currently logged-in user), you should know this attribute is True for any User instance.
-&gt;Changed in Django 1.10:
-&gt;In older versions, this was a method. Backwards-compatibility support for using it as a method will be removed in Django 2.0.
-&gt;Don’t use the is operator for comparisons!
-&gt;To allow the is_authenticated and is_anonymous attributes to also work as methods, the attributes are CallableBool objects. Thus, until the deprecation period ends in Django 2.0, you can’t compare these properties using the is operator. That is, request.user.is_authenticated is True always evaluate to False.
-* is_anonymous
-Read-only attribute which is always False. This is a way of differentiating User and AnonymousUser objects. Generally, you should prefer using is_authenticated to this attribute.
+<ul>
+<li><p>is_authenticated</p>
+<pre><code>Read-only attribute which is always True (as opposed to AnonymousUser.is_authenticated which is always False). This is a way to tell if the user has been authenticated. This does not imply any permissions and doesn’t check if the user is active or has a valid session. Even though normally you will check this attribute on request.user to find out whether it has been populated by the AuthenticationMiddleware (representing the currently logged-in user), you should know this attribute is True for any User instance.
+</code></pre><blockquote>
+<p>Changed in Django 1.10:<br>In older versions, this was a method. Backwards-compatibility support for using it as a method will be removed in Django 2.0.<br>Don’t use the is operator for comparisons!<br>To allow the is_authenticated and is_anonymous attributes to also work as methods, the attributes are CallableBool objects. Thus, until the deprecation period ends in Django 2.0, you can’t compare these properties using the is operator. That is, request.user.is_authenticated is True always evaluate to False.</p>
+<ul>
+<li>is_anonymous<br>Read-only attribute which is always False. This is a way of differentiating User and AnonymousUser objects. Generally, you should prefer using is_authenticated to this attribute.</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>Changed in Django 1.10:<br>In older versions, this was a method. Backwards-compatibility support for using it as a method will be removed in Django 2.0.</p>
+</blockquote>
+</li>
+<li><p>username_validator<br>  New in Django 1.10.<br>  Points to a validator instance used to validate usernames. Defaults to validators.UnicodeUsernameValidator on Python 3 and validators.ASCIIUsernameValidator on Python 2.<br>  To change the default username validator, you can subclass the User model and set this attribute to a different validator instance. For example, to use ASCII usernames on Python 3:<br>  <pre><code><br>  from django.contrib.auth.models import User<br>  from django.contrib.auth.validators import ASCIIUsernameValidator</code></pre></p>
+<p>  class CustomUser(User):</p>
+<pre><code>username_validator = ASCIIUsernameValidator()
 
-&gt;Changed in Django 1.10:
-&gt;In older versions, this was a method. Backwards-compatibility support for using it as a method will be removed in Django 2.0.
-* username_validator
-New in Django 1.10.
-Points to a validator instance used to validate usernames. Defaults to validators.UnicodeUsernameValidator on Python 3 and validators.ASCIIUsernameValidator on Python 2.
-To change the default username validator, you can subclass the User model and set this attribute to a different validator instance. For example, to use ASCII usernames on Python 3:
-&lt;pre&gt;&lt;code&gt;
-from django.contrib.auth.models import User
-from django.contrib.auth.validators import ASCIIUsernameValidator
-
-class CustomUser(User):
-    username_validator = ASCIIUsernameValidator()
-
-    class Meta:
-        proxy = True  # If no new field is added.
-&lt;/code&gt;&lt;/pre&gt;
-</code></pre><p>Methods</p>
+class Meta:
+    proxy = True  # If no new field is added.
+</code></pre><p>  <br>Methods</p>
+</li>
+</ul>
 <p>class models.User<br>get_username()<br>Returns the username for the user. Since the User model can be swapped out, you should use this method instead of referencing the username attribute directly.</p>
 <p>get_full_name()<br>Returns the first_name plus the last_name, with a space in between.</p>
 <p>get_short_name()<br>Returns the first_name.</p>
@@ -226,7 +222,7 @@ class CustomUser(User):
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://cola-life.github.io/2018/05/05/djangoadminmodeluser/" data-id="cjgsrg64c00019ckq8yeqd5ek" class="article-share-link">Share</a>
+      <a data-url="http://cola-life.github.io/2018/05/05/djangoadminmodeluser/" data-id="cjgsrnq8p000234kqr524d2rs" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Django/">Django</a></li></ul>
@@ -267,7 +263,7 @@ class CustomUser(User):
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://cola-life.github.io/2018/05/04/20180504djanoadminsave/" data-id="cjgsrg64700009ckqiwybx9di" class="article-share-link">Share</a>
+      <a data-url="http://cola-life.github.io/2018/05/04/20180504djanoadminsave/" data-id="cjgsrnq8i000034kqxg5cydrm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -312,7 +308,7 @@ class CustomUser(User):
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://cola-life.github.io/2018/05/04/hello-world/" data-id="cjgsrg64h00049ckqahoe0un3" class="article-share-link">Share</a>
+      <a data-url="http://cola-life.github.io/2018/05/04/hello-world/" data-id="cjgsrnq8m000134kqq4fyj9fp" class="article-share-link">Share</a>
       
       
     </footer>
