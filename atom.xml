@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cola-life.github.io/"/>
-  <updated>2018-05-05T05:09:50.014Z</updated>
+  <updated>2018-05-05T05:20:36.215Z</updated>
   <id>http://cola-life.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://cola-life.github.io/2018/05/05/djangoadminreadonly/"/>
     <id>http://cola-life.github.io/2018/05/05/djangoadminreadonly/</id>
     <published>2018-05-05T04:21:54.000Z</published>
-    <updated>2018-05-05T05:09:50.014Z</updated>
+    <updated>2018-05-05T05:20:36.215Z</updated>
     
     <content type="html"><![CDATA[<p>在使用django的时候，ModelAdmin默认对于model的操作只有增加，修改和删除，但是总是有些字段是不希望用户来编辑的，使用下面的代码可以使ModelAdmin中让他显示为只读：<br><a id="more"></a><br><figure class="highlight python"><figcaption><span>lang: python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">   <span class="class"><span class="keyword">class</span> <span class="title">ReadOnlyModelAdmin</span><span class="params">(admin.ModelAdmin)</span>:</span></span><br><span class="line"><span class="string">"""ModelAdmin class that prevents modifications through the admin.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">   The changelist and the detail view work, but a 403 is returned</span></span><br><span class="line"><span class="string">   if one actually tries to edit an object.</span></span><br><span class="line"><span class="string">   """</span></span><br><span class="line"></span><br><span class="line">   actions = <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">get_readonly_fields</span><span class="params">(self, request, obj=None)</span>:</span></span><br><span class="line">       <span class="keyword">return</span> self.fields <span class="keyword">or</span> [f.name <span class="keyword">for</span> f <span class="keyword">in</span> self.model._meta.fields]</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">has_add_permission</span><span class="params">(self, request)</span>:</span></span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line"></span><br><span class="line">   <span class="comment"># Allow viewing objects but not actually changing them</span></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">has_change_permission</span><span class="params">(self, request, obj=None)</span>:</span></span><br><span class="line">       <span class="keyword">if</span> request.method <span class="keyword">not</span> <span class="keyword">in</span> (<span class="string">'GET'</span>, <span class="string">'HEAD'</span>):</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">       <span class="keyword">return</span> super(ReadOnlyModelAdmin, self).has_change_permission(request, obj)</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">has_delete_permission</span><span class="params">(self, request, obj=None)</span>:</span></span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line"></span><br></pre></td></tr></table></figure><br>对于你要设置为只读的ModelAdmin，继承这个类：<br><figure class="highlight python"><figcaption><span>lang: python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestAdmin</span><span class="params">(ReadOnlyModelAdmin)</span>:</span></span><br><span class="line">list_display = (<span class="string">''</span>,<span class="string">''</span>,)</span><br><span class="line">list_filter = (<span class="string">''</span>,)</span><br><span class="line">search_fields = (<span class="string">''</span>,)</span><br><span class="line"></span><br></pre></td></tr></table></figure><br>然后在admin中注册即可：<br><figure class="highlight stylus"><figcaption><span>lang: python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">admin<span class="selector-class">.site</span><span class="selector-class">.register</span>(Test,TestAdmin)</span><br></pre></td></tr></table></figure></p><p>文章来源：<a href="http://www.codeweblog.com/django-modeladmin-%E8%AE%BE%E7%BD%AE%E5%8F%AA%E8%AF%BB/" title="WebLog编程网志" target="_blank" rel="noopener">WebLog编程网志</a></p>]]></content>
     
@@ -30,6 +30,8 @@
       &lt;p&gt;在使用django的时候，ModelAdmin默认对于model的操作只有增加，修改和删除，但是总是有些字段是不希望用户来编辑的，使用下面的代码可以使ModelAdmin中让他显示为只读：&lt;br&gt;&lt;/p&gt;
     
     </summary>
+    
+      <category term="编程" scheme="http://cola-life.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
     
     
       <category term="Django" scheme="http://cola-life.github.io/tags/Django/"/>
@@ -41,7 +43,7 @@
     <link href="http://cola-life.github.io/2018/05/05/pythonstring/"/>
     <id>http://cola-life.github.io/2018/05/05/pythonstring/</id>
     <published>2018-05-05T01:57:47.000Z</published>
-    <updated>2018-05-05T05:09:14.222Z</updated>
+    <updated>2018-05-05T05:20:15.870Z</updated>
     
     <content type="html"><![CDATA[<ol><li><p>strip  lstrip rstrip</p><p> 字符串里有三个去空格的函数<br> strip 同时去掉左右两边的空格<br> lstrip 去掉左边的空格<br> rstrip 去掉右边的空格</p></li></ol><figure class="highlight ruby"><figcaption><span>lang: python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt;a=<span class="string">" gho stwwl "</span></span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt;a.lstrip()</span><br><span class="line"><span class="string">'gho stwwl '</span></span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt;a.rstrip()</span><br><span class="line"><span class="string">' gho stwwl'</span></span><br><span class="line"><span class="meta">&gt;&gt;</span>&gt;a.strip()</span><br><span class="line"><span class="string">'gho stwwl'</span></span><br></pre></td></tr></table></figure><a id="more"></a>]]></content>
     
@@ -56,8 +58,12 @@
     
     </summary>
     
+      <category term="编程" scheme="http://cola-life.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
     
-      <category term="Python string" scheme="http://cola-life.github.io/tags/Python-string/"/>
+    
+      <category term="Python" scheme="http://cola-life.github.io/tags/Python/"/>
+    
+      <category term="string" scheme="http://cola-life.github.io/tags/string/"/>
     
   </entry>
   
@@ -95,7 +101,7 @@
     <link href="http://cola-life.github.io/2018/05/04/20180504djanoadminsave/"/>
     <id>http://cola-life.github.io/2018/05/04/20180504djanoadminsave/</id>
     <published>2018-05-04T13:38:16.000Z</published>
-    <updated>2018-05-05T05:10:14.964Z</updated>
+    <updated>2018-05-05T05:20:27.270Z</updated>
     
     <content type="html"><![CDATA[<p>使用Django框架中的admin可以非常方便地实现常用的管理功能，但有时在通过Admin添加数据时，希望在数据保存时进行一些额外的操作，这可以通过重写ModelAdmin的save_model实现。<br><figure class="highlight python"><figcaption><span>lang: python</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ArticleAdmin</span><span class="params">(admin.ModelAdmin)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">save_model</span><span class="params">(self, request, obj, form, change)</span>:</span></span><br><span class="line">        <span class="comment"># 自定义操作</span></span><br><span class="line">        obj.save()</span><br><span class="line"></span><br></pre></td></tr></table></figure></p><p>通过使用ModelAdmin中的其它方法，可以对admin的其它功能进行更多的控制。<br>详见 <a href="https://docs.djangoproject.com/en/dev/ref/contrib/admin/#django.contrib.admin.ModelAdmin.save_model" title="[https://docs.djangoproject.com/en/dev/ref/contrib/admin/#django.contrib.admin.ModelAdmin.save_model]" target="_blank" rel="noopener">Django文档</a></p><!--[](20180504djanoadminsave/Hydrangeas.jpg) -->]]></content>
     
@@ -108,6 +114,10 @@
     
     </summary>
     
+      <category term="编程" scheme="http://cola-life.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="Django" scheme="http://cola-life.github.io/tags/Django/"/>
     
   </entry>
   
