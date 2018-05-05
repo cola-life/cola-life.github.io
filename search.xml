@@ -3,6 +3,45 @@
   
     
     <entry>
+      <title>g</title>
+      <link href="/2018/05/05/g-1/"/>
+      <url>/2018/05/05/g-1/</url>
+      <content type="html"><![CDATA[]]></content>
+      
+      
+    </entry>
+    
+    <entry>
+      <title>g</title>
+      <link href="/2018/05/05/g/"/>
+      <url>/2018/05/05/g/</url>
+      <content type="html"><![CDATA[]]></content>
+      
+      
+    </entry>
+    
+    <entry>
+      <title>Django如何给上传的图片(或)重命名</title>
+      <link href="/2018/05/05/djangorenameupfile/"/>
+      <url>/2018/05/05/djangorenameupfile/</url>
+      <content type="html"><![CDATA[<ol><li><p>先在你项目中添加一个文件夹如：system 在文件夹下添加<strong>init</strong>.py 和storage.py文件,并在storage.py中添加如下代码：</p><pre><code># -*- coding: UTF-8 -*-from django.core.files.storage import FileSystemStoragefrom django.http import HttpResponseclass ImageStorage(FileSystemStorage):    from django.conf import settings        def __init__(self, location=settings.MEDIA_ROOT, base_url=settings.MEDIA_URL):        # 初始化        super(ImageStorage, self).__init__(location, base_url)    # 重写 _save方法            def _save(self, name, content):        #name为上传文件名称        import os, time, random        # 文件扩展名        ext = os.path.splitext(name)[1]        # 文件目录        d = os.path.dirname(name)        # 定义文件名，年月日时分秒随机数        fn = time.strftime(&apos;%Y%m%d%H%M%S&apos;)        fn = fn + &apos;_%d&apos; % random.randint(0,100)        # 重写合成文件名        name = os.path.join(d, fn + ext)        # 调用父类方法        return super(ImageStorage, self)._save(name, content)</code></pre></li><li><p>在models.py文件中添加如下代码：</p><pre><code>from system.storage import ImageStoragepic=models.ImageField(upload_to=&apos;img/%Y/%m/%d&apos;,storage=ImageStorage())  #如果上传文件可以将ImageField换为FileField    </code></pre></li><li><p>这样就解决了问题，可以根据自己的需要来定义命名规则。</p></li></ol><p>原文出处：<a href="https://www.cnblogs.com/zhaoyingjie/p/6894979.html" title="django如何给上传的图片重命名(给上传文件重命名)  by 一天一点到" target="_blank" rel="noopener">https://www.cnblogs.com/zhaoyingjie/p/6894979.html</a></p>]]></content>
+      
+      <categories>
+          
+          <category> 编程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Django </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>Django ModelAdmin 设置只读</title>
       <link href="/2018/05/05/djangoadminreadonly/"/>
       <url>/2018/05/05/djangoadminreadonly/</url>

@@ -250,6 +250,214 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-g-1" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/05/05/g-1/" class="article-date">
+      <time datetime="2018-05-05T13:57:54.000Z" itemprop="datePublished">2018-05-05</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/05/g-1/">g</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-g" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/05/05/g/" class="article-date">
+      <time datetime="2018-05-05T13:32:12.000Z" itemprop="datePublished">2018-05-05</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/05/g/">g</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-djangorenameupfile" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/05/05/djangorenameupfile/" class="article-date">
+      <time datetime="2018-05-05T13:23:11.000Z" itemprop="datePublished">2018-05-05</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/05/djangorenameupfile/">Django如何给上传的图片(或)重命名</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <ol>
+<li><p>先在你项目中添加一个文件夹如：system 在文件夹下添加<strong>init</strong>.py 和storage.py文件,并在storage.py中添加如下代码：</p>
+<pre><code># -*- coding: UTF-8 -*-
+from django.core.files.storage import FileSystemStorage
+from django.http import HttpResponse
+class ImageStorage(FileSystemStorage):
+    from django.conf import settings    
+    def __init__(self, location=settings.MEDIA_ROOT, base_url=settings.MEDIA_URL):
+        # 初始化
+        super(ImageStorage, self).__init__(location, base_url)
+
+    # 重写 _save方法        
+    def _save(self, name, content):
+        #name为上传文件名称
+        import os, time, random
+        # 文件扩展名
+        ext = os.path.splitext(name)[1]
+        # 文件目录
+        d = os.path.dirname(name)
+        # 定义文件名，年月日时分秒随机数
+        fn = time.strftime(&apos;%Y%m%d%H%M%S&apos;)
+        fn = fn + &apos;_%d&apos; % random.randint(0,100)
+        # 重写合成文件名
+        name = os.path.join(d, fn + ext)
+        # 调用父类方法
+        return super(ImageStorage, self)._save(name, content)
+</code></pre></li>
+<li><p>在models.py文件中添加如下代码：</p>
+<pre><code>from system.storage import ImageStorage
+pic=models.ImageField(upload_to=&apos;img/%Y/%m/%d&apos;,storage=ImageStorage())  #如果上传文件可以将ImageField换为FileField    
+</code></pre></li>
+<li><p>这样就解决了问题，可以根据自己的需要来定义命名规则。</p>
+</li>
+</ol>
+<p>原文出处：<a href="https://www.cnblogs.com/zhaoyingjie/p/6894979.html" title="django如何给上传的图片重命名(给上传文件重命名)  by 一天一点到" target="_blank" rel="noopener">https://www.cnblogs.com/zhaoyingjie/p/6894979.html</a></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/编程/">编程</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Django/">Django</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-djangoadminreadonly" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
